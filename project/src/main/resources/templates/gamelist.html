@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>GamesCorner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    <style type="text/css">
+    div {font-size: 2rem; }  
+    </style>
+</head>
+<body>
+<h1>Games</h1>
+
+<h2>Hello</h2>
+<h3 sec:authentication="name">
+        <a th:text="${name}">Author name:</a></h3>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Studio</th>
+		<th>Publisher</th>
+		<th>Year</th>
+		<th>Category</th>
+	</tr>
+	<tr class="table table-striped" th:each="game: ${games}"><br>
+    <td th:text="${game.title}" />
+    <td th:text="${game.studio}" />
+    <td th:text="${game.publisher}" />
+    <td th:text="${game.publicationYear}" />
+    <td th:text="${game.category.name}" />
+    	<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${game.id})}">Delete</a></td>
+    	<td><a class="btn btn-primary" th:href="@{/edit/{id}(id=${game.id})}">Edit</a></td> 
+    </tr>
+    </table><br>
+	<a href="/add" class="btn btn-success">Add game</a>
+	<p><br></p>
+	<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+</body>
+</html>
