@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -23,10 +24,22 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().requestMatchers("/resources/**", "/signup", "/about").permitAll()
-				.requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").defaultSuccessUrl("/gamelist", true).permitAll().and().logout().permitAll().and()
-				.httpBasic();
+		http.authorizeHttpRequests()
+	    .requestMatchers("/", "/home").permitAll() // Allow unauthenticated access to the home endpoint
+	    .requestMatchers("/h2-console/**").permitAll()
+	    .requestMatchers("/admin/**").hasRole("ADMIN") // Require "ADMIN" role for endpoints matching "/admin/**"
+	    .anyRequest().authenticated()
+	    .and()
+	    .formLogin()
+	        .loginPage("/login")
+	        .permitAll() // Allow unauthenticated access to the login page
+	        .defaultSuccessUrl("/gamelist", true)
+	    .and()
+	    .logout()
+	        .permitAll()
+	    .and()
+	    .httpBasic();
+
 
 		return http.build();
 	}

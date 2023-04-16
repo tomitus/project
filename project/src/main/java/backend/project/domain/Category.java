@@ -44,8 +44,8 @@ public class Category {
 		return games;
 	}
 
-	public void setGames(List<Game> books) {
-		this.games = books;
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	@Override

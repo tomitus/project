@@ -1,5 +1,8 @@
 package backend.project.domain;
 
+
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,21 +10,23 @@ public class Game {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-	private String title, studio, publisher;
-	private int publicationYear;
+	private String title, studio;
 	
 	@ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
 	
+	@OneToMany(mappedBy = "game")
+	private List<Review> reviews;
+	
+	
+	
 public Game() {}
 	
-	public Game(String title, String studio, String publisher, int publicationYear, Category category) {
+	public Game(String title, String studio, Category category) {
 		super();
 		this.title = title;
 		this.studio = studio;
-		this.publisher = publisher;
-		this.publicationYear = publicationYear;
 		this.category = category;
 	}
 
@@ -49,21 +54,6 @@ public Game() {}
 		this.studio = studio;
 	}
 
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public int getPublicationYear() {
-		return publicationYear;
-	}
-
-	public void setPublicationYear(int publicationYear) {
-		this.publicationYear = publicationYear;
-	}
 
 	public Category getCategory() {
 		return category;
@@ -76,11 +66,11 @@ public Game() {}
 	@Override
 	public String toString() {
 		if (this.category != null) {
-			return "Game [id=" + id + ", title=" + title + ", studio=" + studio + ", publisher=" + publisher
-			+ ", publicationYear=" + publicationYear + ", category=" + this.getCategory() + "]";
+			return "Game [id=" + id + ", title=" + title + ", studio=" + studio
+			 + ", category=" + this.getCategory() + "]";
 		}
-		return "Game [id=" + id + ", title=" + title + ", studio=" + studio + ", publisher=" + publisher
-				+ ", publicationYear=" + publicationYear + "]";
+		return "Game [id=" + id + ", title=" + title + ", studio=" + studio
+				+ "]";
 	}
 	
 }

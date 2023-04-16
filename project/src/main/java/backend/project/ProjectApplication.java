@@ -37,10 +37,10 @@ public class ProjectApplication {
 			crepository.save(new Category("Action"));
 			crepository.save(new Category("Adventure"));
 			
-			grepository.save(new Game("Portal", "Valve", "Valve", 2007, crepository.findByName("Puzzle").get(0)));
-			grepository.save(new Game("World of warcraft", "Blizzard Entertainment", "Blizzard Entertainment", 2005, crepository.findByName("MMORPG").get(0)));
+			grepository.save(new Game("Portal", "Valve", crepository.findByName("Puzzle")));
+			grepository.save(new Game("World of warcraft", "Blizzard Entertainment", crepository.findByName("MMORPG")));
 			
-			User user1 = new User("Tomi", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user1 = new User("Tomi", "$2a$10$gP.I3mvNRZnSqbcQ6LzHm.LpsryxqhSYxyUhjLZ/l18V.KgXpA1ae", "USER");
 			User user2 = new User("admin", "$2a$10$YYj56XNu0YI4dc/X4wYiOeHcXG.yUU9gcg9PfFHBzF.vv4Oc9S2vO", "ADMIN");
 
 			urepository.save(user1);

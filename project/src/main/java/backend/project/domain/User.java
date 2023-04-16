@@ -1,9 +1,10 @@
 package backend.project.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +23,10 @@ public class User {
 
 	@Column(name = "role", nullable = false)
 	private String role;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Review> reviews;
 	
 public User() {}
 	
