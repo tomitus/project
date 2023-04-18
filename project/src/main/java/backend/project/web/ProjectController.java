@@ -49,27 +49,38 @@ public class ProjectController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/addreview")
-	public String addReview(Model model) {
+	@RequestMapping(value = "/addreview/{id}")
+	public String addReview(@PathVariable("id") Long gameId, Model model) {
 		model.addAttribute("review", new Review());
-		model.addAttribute("game", new Game());
+		model.addAttribute("game", grepository.findById(gameId));
 		model.addAttribute("category", crepository.findAll());
 
 		return "addreview";
 	}
+	
+	@RequestMapping(value = "/addgame")
+	public String addGame(Model model) {
+		model.addAttribute("game", new Game());
+		model.addAttribute("category", crepository.findAll());
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveReview(@ModelAttribute("review") Review review, Model model) {
-		Game game = review.getGame();
-	    game.setTitle(review.getGame().getTitle());
-	    game.setStudio(review.getGame().getStudio());
-	    
-	    
-	    game.setCategory(crepository.findByName(game.getCategory().getName()));
-	    rrepository.save(review);
-	    
+		return "addgame";
+	}
+	
+
+	@RequestMapping(value = "/savegame", method = RequestMethod.POST)
+	public String save(Game game) {
+		grepository.save(game);
+		
 		return "redirect:gamelist";
 	}
+	
+	@RequestMapping(value = "/savereview", method = RequestMethod.POST)
+	public String save(Review review) {
+		rrepository.save(review);
+
+		return "redirect:gamelist";
+	}
+	
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
@@ -79,10 +90,9 @@ public class ProjectController {
 		return "redirect:../gamelist";
 	}
 
-	@RequestMapping(value = "/edit/{id}")
-	public String showModStu(@PathVariable("id") Long gameId, String rating, Model model) {
+	@RequestMapping(value = "/editGame/{id}")
+	public String showModStu(@PathVariable("id") Long gameId, Model model) {
 		model.addAttribute("game", grepository.findById(gameId));
-		model.addAttribute("review", rrepository.findByRating(rating));
 		model.addAttribute("category", crepository.findAll());
 
 		return "editgame";

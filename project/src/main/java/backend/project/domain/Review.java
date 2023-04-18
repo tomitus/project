@@ -23,46 +23,17 @@ public class Review {
     @JoinColumn(name = "gameId")
     private Game game;
 	
-	private String gameTitle;
-	private String gameStudio;
-	private Category gameCategory;
+	
 	
 	public Review() {}
 	
-	public Review(User user, Game game,  String rating, String comment, Double hours, String gameTitle, String gameStudio, Category gameCategory) {
+	public Review(User user, Game game,  String rating, String comment, Double hours) {
 		super();
 		this.user = user;
 		this.game = game;	
 		this.rating = rating;
 		this.comment = comment;
 		this.hours = hours;
-		this.gameTitle = game.getTitle();
-		this.gameStudio = game.getStudio();
-		this.gameCategory = game.getCategory();
-	}
-
-	public String getGameTitle() {
-		return gameTitle;
-	}
-
-	public void setGameTitle(String gameTitle) {
-		this.gameTitle = gameTitle;
-	}
-
-	public String getGameStudio() {
-		return gameStudio;
-	}
-
-	public void setGameStudio(String gameStudio) {
-		this.gameStudio = gameStudio;
-	}
-
-	public Category getGameCategory() {
-		return gameCategory;
-	}
-
-	public void setGameCategory(Category gameCategory) {
-		this.gameCategory = gameCategory;
 	}
 
 	public User getUser() {

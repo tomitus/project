@@ -16,8 +16,6 @@ public class Game {
     @JoinColumn(name = "categoryid")
     private Category category;
 	
-	@OneToMany(mappedBy = "game")
-	private List<Review> reviews;
 	
 	
 	
