@@ -90,7 +90,7 @@ public class ProjectController {
 		return "redirect:../gamelist";
 	}
 
-	@RequestMapping(value = "/editGame/{id}")
+	@RequestMapping(value = "/editgame/{id}")
 	public String showModStu(@PathVariable("id") Long gameId, Model model) {
 		model.addAttribute("game", grepository.findById(gameId));
 		model.addAttribute("category", crepository.findAll());

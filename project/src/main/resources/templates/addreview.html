@@ -8,7 +8,7 @@
 <body>
 	<h1>Add your review</h1>
 	<div>
-		<form th:object="${review}" th:action="@{save}" action="#" method="post">
+		<form th:object="${review}" th:action="@{savereview}" action="#" method="post">
 		  	<label for="title">Title:</label>
 			<input type="text" id="title" th:field="*{game.title}" />
 			<div style="clear: both; display: block; height: 10px;"></div>

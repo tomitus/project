@@ -25,21 +25,29 @@ div {
 			<th>Title</th>
 			<th>Studio</th>
 			<th>Category</th>
+			<th>User</th>
+			<th>Rating</th>
+			<th>Comment</th>
+			<th>Hours played</th>
 		</tr>
 		<tr class="table table-striped" th:each="game: ${games}">
 			<br>
 			<td th:text="${game.title}" />
 			<td th:text="${game.studio}" />
 			<td th:text="${game.category.name}" />
-			
+			<td th:text="${review.user.name}" />
+			<td th:text="${review.rating}" />
+			<td th:text="${review.comment}" />
+			<td th:text="${review.hours}" />
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				class="btn btn-danger" th:href="@{/delete/{id}(id=${game.id})}">Delete</a></td>
 			<td><a class="btn btn-primary"
-				th:href="@{/edit/{id}(id=${game.id})}">Edit</a></td>
+				th:href="@{/editgame/{id}(id=${game.id})}">Edit</a></td>
 		</tr>
 	</table>
 	<br>
 	<a href="/addgame" class="btn btn-success">Add game</a>
+	<a href="/addreview" class="btn btn-success">Add a new review</a>
 	<p>
 		<br>
 	</p>
