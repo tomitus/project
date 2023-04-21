@@ -1,5 +1,6 @@
 package backend.project.domain;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,7 @@ public class Review {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long reviewId;
 	private String rating, comment;
-	private double hours;
+	private int hours;
 	
 	@ManyToOne
     @JoinColumn(name = "userId")
@@ -27,7 +28,7 @@ public class Review {
 	
 	public Review() {}
 	
-	public Review(User user, Game game,  String rating, String comment, Double hours) {
+	public Review(User user, Game game,  String rating, String comment, int hours) {
 		super();
 		this.user = user;
 		this.game = game;	
@@ -76,11 +77,11 @@ public class Review {
 		this.comment = comment;
 	}
 
-	public double getHours() {
+	public int getHours() {
 		return hours;
 	}
 
-	public void setHours(double hours) {
+	public void setHours(int hours) {
 		this.hours = hours;
 	}
 	

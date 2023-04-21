@@ -9,29 +9,22 @@
 	<h1>Add your review</h1>
 	<div>
 		<form th:object="${review}" th:action="@{savereview}" action="#" method="post">
-		  	<label for="title">Title:</label>
-			<input type="text" id="title" th:field="*{game.title}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="studio">Studio:</label>
-			<input type="text" id="studio" th:field="*{game.studio}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="catlist">Category</label>
-			<div style="clear: both; display: block; height: 10px;"></div>
-			 <select id="catlist" th:field="*{game.category}" class="form-control">
-       			<option th:each="category: ${category}" th:value="${category.name}" th:text="${category.name}"></option>
-    		</select>
-    		<div style="clear: both; display: block; height: 10px;"></div>
-    		<label for="rating">Your rating out of 10</label>
-			<input type="text" id="rating" th:field="*{rating}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="comment">Comment:</label>
-			<input type="text" id="comment" th:field="*{comment}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="hours">Hours played:</label>
-			<input type="text" id="hours" th:field="*{hours}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<input type="submit" class="btn btn-success" value="Save"></input>
-		</form>
+		  
+			 <select id="gameList" th:field="*{game}" class="form-control" required>
+   			<option th:each="game: ${game}" th:value="${game.id}" th:text="${game.title}"></option>
+		</select>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="rating">Your rating out of 10:</label>
+		<input type="number" id="rating" th:field="*{rating}" required min="0" max="10" step="1" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="comment">Comment:</label>
+		<textarea id="comment" th:field="*{comment}" required minlength="10"></textarea>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="hours">Hours played:</label>
+		<input type="number" id="hours" th:field="*{hours}" required min="0" step="1" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<input type="submit" class="btn btn-success" value="Save"></input>
+	</form>
 	</div>
 </body>
 </html>

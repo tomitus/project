@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
-	    .requestMatchers("/", "/home").permitAll() // Allow unauthenticated access to the home endpoint
+	    .requestMatchers("/", "/home", "/css/**", "/registration", "/saveuser").permitAll() // Allow unauthenticated access to the home endpoint
 	    .requestMatchers("/h2-console/**").permitAll()
 	    .requestMatchers("/admin/**").hasRole("ADMIN") // Require "ADMIN" role for endpoints matching "/admin/**"
 	    .anyRequest().authenticated()

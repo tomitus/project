@@ -1,7 +1,7 @@
 package backend.project.domain;
 
 
-import java.util.List;
+
 
 import jakarta.persistence.*;
 
@@ -16,7 +16,9 @@ public class Game {
     @JoinColumn(name = "categoryid")
     private Category category;
 	
-	
+	@ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "reviewid")
+    private Review review;
 	
 	
 public Game() {}

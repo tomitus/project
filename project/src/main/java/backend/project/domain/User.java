@@ -6,8 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
-@Entity
+
 @Table(name = "users")
+@Entity
 public class User {
 
 	@Id
@@ -21,8 +22,9 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String passwordHash;
 
+	
 	@Column(name = "role", nullable = false)
-	private String role;
+	private String role;	
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

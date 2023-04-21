@@ -35,5 +35,11 @@ div {
 			
 		</form>
 		
+		<form th:action="@{/registration}" method="get">
+		<div>
+			<input sec:authorize="isAnonymous()" type="submit" value="Sign-up"
+				class="btn btn-primary" />
+		</div>
+	</form>
 </body>
 </html>
