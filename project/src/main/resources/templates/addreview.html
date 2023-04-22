@@ -18,7 +18,7 @@
 		<input type="number" id="rating" th:field="*{rating}" required min="0" max="10" step="1" />
 		<div style="clear: both; display: block; height: 10px;"></div>
 		<label for="comment">Comment:</label>
-		<textarea id="comment" th:field="*{comment}" required minlength="10"></textarea>
+		<textarea id="comment" th:field="*{comment}"></textarea>
 		<div style="clear: both; display: block; height: 10px;"></div>
 		<label for="hours">Hours played:</label>
 		<input type="number" id="hours" th:field="*{hours}" required min="0" step="1" />
