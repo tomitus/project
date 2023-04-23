@@ -5,7 +5,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
-
+	
+//THIS CLASS IS FOR THE EXISTING USERS HARDCODED AND THE NEW USERS CREATED
 
 @Table(name = "users")
 @Entity

@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
+
+// THIS IS THE CLASS FOR THE GAME CATEGORY
+
 @Entity
 public class Category {
 	@Id

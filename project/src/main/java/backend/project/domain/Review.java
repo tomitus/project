@@ -8,6 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+
+//THIS CLASS IS FOR THE REVIEW. IT HAS THE USER AND GAME OBJECTS
+
 @Entity
 public class Review {
 	@Id

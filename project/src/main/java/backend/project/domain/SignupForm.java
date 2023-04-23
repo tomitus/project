@@ -2,6 +2,9 @@ package backend.project.domain;
 
 import jakarta.validation.constraints.*;
 
+
+//THIS CLASS IS FOR CREATING A NEW USER
+
 public class SignupForm {
 	@NotEmpty
     @Size(min=5, max=30)

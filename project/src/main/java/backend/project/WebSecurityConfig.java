@@ -25,15 +25,14 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
-	    .requestMatchers("/", "/home", "/css/**", "/registration", "/saveuser").permitAll() // Allow unauthenticated access to the home endpoint
-	    .requestMatchers("/h2-console/**").permitAll()
+	    .requestMatchers("/", "/home", "/css/**", "/registration", "/saveuser").permitAll() // Allow unauthenticated access to these endpoints, because the user needs them to get to the app
 	    .requestMatchers("/admin/**").hasRole("ADMIN") // Require "ADMIN" role for endpoints matching "/admin/**"
 	    .anyRequest().authenticated()
 	    .and()
 	    .formLogin()
 	        .loginPage("/login")
 	        .permitAll() // Allow unauthenticated access to the login page
-	        .defaultSuccessUrl("/gamelist", true)
+	        .defaultSuccessUrl("/home", true)
 	    .and()
 	    .logout()
 	        .permitAll()

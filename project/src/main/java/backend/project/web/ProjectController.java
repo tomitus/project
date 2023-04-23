@@ -43,6 +43,9 @@ public class ProjectController {
 	@Autowired
 	private UserRepository urepository;
 
+	
+	
+	//Mapping for the gamelist
 	@GetMapping("/gamelist")
 	public String gamelist(Model model) {
 		model.addAttribute("reviews", rrepository.findAll());
@@ -55,6 +58,8 @@ public class ProjectController {
 		return "gamelist";
 	}
 
+	
+	//Mapping for home
 	@GetMapping("/home")
 	public String home(Model model) {
 		model.addAttribute("games", grepository.findAll());
@@ -62,15 +67,7 @@ public class ProjectController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/addreview/{id}")
-	public String addReview(@PathVariable("id") Long gameId, Model model) {
-		model.addAttribute("review", new Review());
-		model.addAttribute("game", grepository.findById(gameId));
-		model.addAttribute("category", crepository.findAll());
-
-		return "addreview";
-	}
-	
+	//Mapping for the add review button
 	@RequestMapping(value = "/addreview")
 	public String addReviewNew(Model model) {
 		
@@ -81,6 +78,7 @@ public class ProjectController {
 		return "addreview";
 	}
 	
+	//Mapping for the add game button
 	@RequestMapping(value = "/addgame")
 	public String addGame(Model model) {
 		model.addAttribute("game", new Game());
@@ -89,7 +87,7 @@ public class ProjectController {
 		return "addgame";
 	}
 	
-
+	//Mapping for the save button in addgame page
 	@RequestMapping(value = "/savegame", method = RequestMethod.POST)
 	public String saveGame(Game game) {
 		grepository.save(game);
@@ -97,6 +95,7 @@ public class ProjectController {
 		return "redirect:gamelist";
 	}
 	
+	//Mapping for the save button in addreview page
 	@RequestMapping(value = "/savereview", method = RequestMethod.POST)
 	public String saveReview(@ModelAttribute("review")Review review, Authentication authentication) {
 		User currUser = urepository.findByUsername(authentication.getName());
@@ -106,7 +105,7 @@ public class ProjectController {
 		return "redirect:gamelist";
 	}
 	
-
+	//Mapping for the delete button in gamelist
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteReview(@PathVariable("id") Long reviewId, Model model) {
@@ -115,6 +114,7 @@ public class ProjectController {
 		return "redirect:../gamelist";
 	}
 
+	//Mapping for the edit button in gamelist
 	@RequestMapping(value = "/editgame/{id}")
 	public String showModStu(@PathVariable("id") Long gameId, Model model) {
 		model.addAttribute("game", grepository.findById(gameId));
@@ -122,7 +122,8 @@ public class ProjectController {
 
 		return "editgame";
 	}
-
+	
+	//Mapping for the login button
 	@GetMapping("/login")
 	public String login(Model model) {
 		

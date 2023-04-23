@@ -1,9 +1,8 @@
 package backend.project.domain;
 
-
-
-
 import jakarta.persistence.*;
+
+//THIS CLASS IS FOR THE GAME OBJECT
 
 @Entity
 public class Game {

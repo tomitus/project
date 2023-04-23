@@ -14,7 +14,7 @@ import backend.project.domain.User;
 import backend.project.domain.UserRepository;
 import jakarta.validation.*;
 
-
+//THIS CONTROLLER IS ONLY FOR THE SIGN-UP AND SAVING THE NEW USER TO THE DATABASE
 
 @Controller
 public class UserController {

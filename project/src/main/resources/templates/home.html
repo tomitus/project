@@ -23,16 +23,21 @@ th, td {
 }
 </style>
 </head>
+
+<!-- This is the home page where the user starts after login 
+	 it shows all the games currently in the system -->
 <body>
 	<h1 sec:authorize="isAuthenticated()"
 		th:text="${#strings.concat('Welcome, ', #authentication.name)} + ' to GamesCorner'">Games
 		corner</h1>
+		
+		
 	<h1 sec:authorize="isAnonymous()">Welcome to Games corner</h1>
 
 	<h2 sec:authorize="isAnonymous()">Sign in to add your games</h2>
-	<!-- <h3 sec:authentication="name">
-        <a th:text="${name}">Author name:</a></h3> -->
-
+		
+	
+	
 	<form th:action="@{/login}" method="post">
 		<div>
 			<input sec:authorize="isAnonymous()" type="submit" value="Sign In"
@@ -45,9 +50,11 @@ th, td {
 				value="To the reviews" class="btn btn-primary" />
 		</div>
 	</form>
-
 	<br>
 	<br>
+	<p>Here are the available games to review. You can add more from the Reviews page!</p>
+	
+	
 	<h3>Games</h3>
 	<br>
 	<table>
@@ -62,6 +69,8 @@ th, td {
 			<td th:text="${game.studio}" />
 			<td th:text="${game.category.name}" />
 
+		
+			
 		</tr>
 	</table>
 
