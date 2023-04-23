@@ -115,12 +115,12 @@ public class ProjectController {
 	}
 
 	//Mapping for the edit button in gamelist
-	@RequestMapping(value = "/editgame/{id}")
-	public String showModStu(@PathVariable("id") Long gameId, Model model) {
-		model.addAttribute("game", grepository.findById(gameId));
-		model.addAttribute("category", crepository.findAll());
+	@RequestMapping(value = "/editreview/{id}")
+	public String showModStu(@PathVariable("id") Long reviewId, Model model) {
+		model.addAttribute("review", rrepository.findById(reviewId));
+		model.addAttribute("game", grepository.findAll());
 
-		return "editgame";
+		return "editreview";
 	}
 	
 	//Mapping for the login button

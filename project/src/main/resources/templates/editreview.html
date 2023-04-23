@@ -1,31 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Edit game</title>
+<title>Edit review</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <!-- THIS IS FOR EDITING A  -->
 <body>
-	<h1>Edit game</h1>
+	<h1>Edit review</h1>
 	<div>
-		<form th:object="${game}" th:action="@{../savegame}" action="#" method="post">
-		<input type="hidden" th:field="*{id}" class="form-control" /> 
-		  	<label for="title">Title:</label>
-			<input type="text" id="title" th:field="*{title}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="studio">Studio:</label>
-			<input type="text" id="studio" th:field="*{studio}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="catlist">Category</label>
-			<div style="clear: both; display: block; height: 10px;"></div>
-			 <select id="catlist" th:field="*{category}" class="form-control">
-       			<option th:each="category: ${category}" th:value="${category.categoryid}" th:text="${category.name}"></option>
-    		</select>
-    		<div style="clear: both; display: block; height: 10px;"></div>
-			<input type="submit" class="btn btn-primary" value="Save"></input>
-		</form>
+		<form th:object="${review}" th:action="@{../savereview}" action="#" method="post">
+		  <input type="hidden" th:field="*{reviewId}" class="form-control" />
+			 <select id="gameList" th:field="*{game}" class="form-control" required>
+   			<option th:each="game: ${game}" th:value="${game.id}" th:text="${game.title}"></option>
+		</select>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="rating">Your rating out of 10:</label>
+		<input type="number" id="rating" th:field="*{rating}" required min="0" max="10" step="1" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="comment">Comment:</label>
+		<textarea id="comment" th:field="*{comment}"></textarea>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="hours">Hours played:</label>
+		<input type="number" id="hours" th:field="*{hours}" required min="0" step="1" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		<input type="submit" class="btn btn-success" value="Save"></input>
+	</form>
 	</div>
 </body>
 </html>

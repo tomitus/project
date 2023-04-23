@@ -48,9 +48,9 @@ padding: 10px;}
 
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				class="btn btn-danger"
-				th:href="@{/delete/{id}(id=${review.game.id})}">Delete</a></td>
+				th:href="@{/delete/{id}(id=${review.reviewId})}">Delete</a></td>
 			<td th:if="${#authentication.principal.username eq review.user.username}"><a class="btn btn-primary"
-				th:href="@{/editgame/{id}(id=${review.game.id})}">Edit</a></td>
+				th:href="@{/editreview/{id}(id=${review.game.id})}">Edit</a></td>
 		</tr>
 	</table>
 	<br>
